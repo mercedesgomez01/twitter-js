@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mercedesgomez01/twitter-js#readme",
   "dependencies": {
+    "chalk": "^1.1.3",
     "express": "^4.15.2"
   }
 }
