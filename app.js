@@ -18,7 +18,9 @@ const nunjucks = require('nunjucks')
 app.use(morgan('combined'))
 
 app.get('/', function (req, res) {
-  res.send('Welcome!')
+  //res.send('Welcome!')
+  const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+  res.render( 'index', {title: 'Hall of Fame', people: people})
 })
 
 app.listen(3000, function () {
@@ -26,6 +28,10 @@ app.listen(3000, function () {
   var stringz = 'Example app listening on port 3000!'
   console.log(chalk.red(stringz))
 })
+
+app.set('view engine', 'html'); // have res.render work with html files
+app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
+nunjucks.configure('views', { noCache: true }); // point nunjucks to the proper directory for templates
 
 // in some file that is in the root directory of our application... how about app.js?
 var locals = {
@@ -36,7 +42,6 @@ var locals = {
         { name: 'Hermione'}
     ]
 };
-nunjucks.configure('views', {noCache: true});
 nunjucks.render('index.html', locals, function (err, output) {
     console.log(output);
 });
