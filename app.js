@@ -1,17 +1,20 @@
 const express = require( 'express' );
 const app = express(); // creates an instance of an express application
-const chalk = require('chalk')
+const chalk = require('chalk');
+var morgan = require('morgan');
 
-app.use(function (req, res, next) {
-  console.log('Time:', Date.now())
-  //find a way to send status on middleware
-  next()
-})
+// app.use(function (req, res, next) {
+//   console.log('Time:', Date.now())
+//   //find a way to send status on middleware
+//   next()
+// })
 
-app.use("/special/", function (req, res, next) {
-  console.log("You are entering a special area")
-  next()
-})
+// app.use("/special/", function (req, res, next) {
+//   console.log("You are entering a special area")
+//   next()
+// })
+
+app.use(morgan('combined'))
 
 app.get('/', function (req, res) {
   res.send('Welcome!')
