@@ -4,6 +4,12 @@ const chalk = require('chalk')
 
 app.use(function (req, res, next) {
   console.log('Time:', Date.now())
+  //find a way to send status on middleware
+  next()
+})
+
+app.use("/special/", function (req, res, next) {
+  console.log("You are entering a special area")
   next()
 })
 
