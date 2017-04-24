@@ -3,7 +3,8 @@ const app = express(); // creates an instance of an express application
 const chalk = require('chalk');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks')
-const routes = require('routes')
+const routes = require('./routes')
+var path = require('path');
 
 // app.use(function (req, res, next) {
 //   console.log('Time:', Date.now())
@@ -18,11 +19,12 @@ const routes = require('routes')
 
 app.use(morgan('combined'))
 app.use('/', routes)
+app.use('/public', express.static(path.join(__dirname, '/public')))
+//app.use(express.static('public'))
 
 
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
   var stringz = 'Example app listening on port 3000!'
   console.log(chalk.red(stringz))
 })
