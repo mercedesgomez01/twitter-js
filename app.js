@@ -20,7 +20,6 @@ var path = require('path');
 app.use(morgan('combined'))
 app.use('/', routes)
 app.use('/public', express.static(path.join(__dirname, '/public')))
-//app.use(express.static('public'))
 
 
 
