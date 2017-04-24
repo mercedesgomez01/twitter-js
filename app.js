@@ -3,6 +3,7 @@ const app = express(); // creates an instance of an express application
 const chalk = require('chalk');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks')
+const routes = require('routes')
 
 // app.use(function (req, res, next) {
 //   console.log('Time:', Date.now())
@@ -16,12 +17,9 @@ const nunjucks = require('nunjucks')
 // })
 
 app.use(morgan('combined'))
+app.use('/', routes)
 
-app.get('/', function (req, res) {
-  //res.send('Welcome!')
-  const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
-  res.render( 'index', {title: 'Hall of Fame', people: people})
-})
+
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
