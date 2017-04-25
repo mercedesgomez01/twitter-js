@@ -10,13 +10,23 @@ router.get('/', function (req, res) {
 });
 
 router.get('/stylesheets/style.css', function (req, res, next){
-  console.log("WKERKJELRK!!!!!!!!!!!!!!!!!!!!")
   res.sendFile('/stylesheets/style.css', { root : __dirname + '/../public/' })
 });
 
 router.get('/users/:name', function(req, res) {
-  var name = req.params.name;
-  var list = tweetBank.find( {name: name} );
+  var list = tweetBank.find( {name: req.params.name} );
+  res.render( 'index', { 
+    title: 'Twitter.js',
+    tweets: list,
+    showForm: true,
+    name: req.params.name
+  });
+});
+
+router.get('/users/id/:id', function(req, res) {
+  var id = req.params.id;
+  console.log("WE HAVE AN ID", id)
+  var list = tweetBank.find( {id: id} );
   res.render( 'index', { list: list } );
 });
 

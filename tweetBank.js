@@ -4,7 +4,9 @@ const _ = require('lodash');
 var data = []
 
 function add (name, content) {
-  data.push({ name: name, content: content });
+  var id = Math.floor(Math.random()*50)
+  console.log("HEHREE", id)
+  data.push({ name: name, content: content, id: id });
 }
 
 function list () {

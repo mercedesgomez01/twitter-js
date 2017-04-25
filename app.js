@@ -42,5 +42,5 @@ var locals = {
     ]
 };
 nunjucks.render('index.html', locals, function (err, output) {
-    console.log(output);
+    //console.log(output);
 });
