@@ -24,10 +24,14 @@ router.get('/users/:name', function(req, res) {
 });
 
 router.get('/users/id/:id', function(req, res) {
-  var id = req.params.id;
-  console.log("WE HAVE AN ID", id)
-  var list = tweetBank.find( {id: id} );
-  res.render( 'index', { list: list } );
+  console.log("WE HAVE AN ID", req.params.id)
+  var list = tweetBank.find( {id: req.params.id} );
+  res.render( 'index', { 
+    title: 'Twitter.js',
+    tweets: list,
+    showForm: true,
+    name: req.params.name
+  } );
 });
 
 module.exports = router;
