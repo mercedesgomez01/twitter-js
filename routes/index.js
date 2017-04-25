@@ -23,14 +23,13 @@ router.get('/users/:name', function(req, res) {
   });
 });
 
-router.get('/users/id/:id', function(req, res) {
-  console.log("WE HAVE AN ID", req.params.id)
-  var list = tweetBank.find( {id: req.params.id} );
+router.get('/tweets/:id', function(req, res) {
+  var list = tweetBank.find( {id: Number(req.params.id)} );
+  console.log("TWEETS for that ID", req.params.id, list)
   res.render( 'index', { 
     title: 'Twitter.js',
     tweets: list,
-    showForm: true,
-    name: req.params.name
+    showForm: true
   } );
 });
 

@@ -6,7 +6,7 @@ var data = []
 function add (name, content) {
   var id = Math.floor(Math.random()*50)
   console.log("HEHREE", id)
-  data.push({ name: name, content: content, id: id });
+  data.push({ name: name, id: id, content: content });
 }
 
 function list () {
