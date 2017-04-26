@@ -8,7 +8,8 @@ var path = require('path');
 const bodyParser = require('body-parser');
 
 //parse url. used for body from html form
-app.use(bodyParser.urlencded({extend: false}))
+//we can access body variables like req.body.name and req.body.content
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 
