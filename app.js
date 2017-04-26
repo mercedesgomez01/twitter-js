@@ -5,6 +5,12 @@ const morgan = require('morgan');
 const nunjucks = require('nunjucks')
 const routes = require('./routes')
 var path = require('path');
+const bodyParser = require('body-parser');
+
+//parse url. used for body from html form
+app.use(bodyParser.urlencded({extend: false}))
+app.use(bodyParser.json())
+
 
 // app.use(function (req, res, next) {
 //   console.log('Time:', Date.now())
