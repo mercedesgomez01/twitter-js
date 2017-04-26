@@ -32,4 +32,11 @@ router.get('/tweets/:id', function(req, res) {
   } );
 });
 
+router.post('/tweets',function(req, res){
+  let name = req.body.name;
+  let text = req.body.text;
+  tweetBank.add(name, text);
+  res.redirect('/');
+});
+
 module.exports = router;
