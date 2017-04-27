@@ -39,4 +39,9 @@ router.post('/tweets',function(req, res){
   res.redirect('/');
 });
 
-module.exports = router;
+//module.exports = router;
+//We want io to emit an event in our routes
+//If we pass an io instance into this function, we will be able to use it in our routes.
+module.exports = function (io) {
+  return router
+}

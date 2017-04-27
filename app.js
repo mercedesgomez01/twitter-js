@@ -4,8 +4,11 @@ const chalk = require('chalk');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks')
 const routes = require('./routes')
-var path = require('path');
+const path = require('path');
 const bodyParser = require('body-parser');
+const socketio = require('socket.io');
+
+
 
 //parse url. used for body from html form
 //we can access body variables like req.body.name and req.body.content
@@ -34,6 +37,7 @@ app.listen(3000, function () {
   var stringz = 'Example app listening on port 3000!'
   console.log(chalk.red(stringz))
 })
+const io = socketio.listen(server);
 
 app.set('view engine', 'html'); // have res.render work with html files
 app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
