@@ -3,7 +3,7 @@ const app = express(); // creates an instance of an express application
 const chalk = require('chalk');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks')
-const rout = require('./routes')
+const routes = require('./routes')
 const path = require('path');
 const bodyParser = require('body-parser');
 const socketio = require('socket.io');
@@ -29,16 +29,16 @@ app.use(bodyParser.json())
 
 app.use(morgan('combined'))
 //app.use('/', routes)
-app.use('/', rout(io))
-app.use('/public', express.static(path.join(__dirname, '/public')))
 
-
-
-app.listen(3000, function () {
+//app.listen(3000, function () {
+var server = app.listen(3000, function () {
   var stringz = 'Example app listening on port 3000!'
   console.log(chalk.red(stringz))
 })
 const io = socketio.listen(server);
+
+app.use('/', routes(io))
+app.use('/public', express.static(path.join(__dirname, '/public')))
 
 app.set('view engine', 'html'); // have res.render work with html files
 app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
