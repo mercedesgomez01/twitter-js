@@ -3,7 +3,7 @@ const app = express(); // creates an instance of an express application
 const chalk = require('chalk');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks')
-const routes = require('./routes')
+const rout = require('./routes')
 const path = require('path');
 const bodyParser = require('body-parser');
 const socketio = require('socket.io');
@@ -28,7 +28,8 @@ app.use(bodyParser.json())
 // })
 
 app.use(morgan('combined'))
-app.use('/', routes)
+//app.use('/', routes)
+app.use('/', rout(io))
 app.use('/public', express.static(path.join(__dirname, '/public')))
 
 
