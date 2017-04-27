@@ -37,7 +37,9 @@ module.exports = function (io) {
   router.post('/tweets',function(req, res){
     let name = req.body.name;
     let text = req.body.text;
-    tweetBank.add(name, text);
+    // tweetBank.add(name, text);
+    var newTweet = tweetBank.add(name, text)
+    io.sockets.emit('new_tweet', newTweet);
     res.redirect('/');
   });
 
